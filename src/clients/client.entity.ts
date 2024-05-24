@@ -7,22 +7,30 @@ export class Client {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
-  @ApiProperty()
+  @ApiProperty({ example: 'Иван', description: 'Имя' })
   @Column()
   name: string;
-  @ApiProperty()
+  @ApiProperty({ example: 'Иванов', description: 'Фамилия' })
   @Column()
   surname: string;
-  @ApiProperty()
+  @ApiProperty({ example: '89123456789', description: 'Телефон' })
   @Column()
   phoneNumber: string;
-  @ApiProperty()
+  @ApiProperty({ example: 'ivanov@mail.ru', description: 'Эл. почта' })
   @Column()
   email: string;
-  @ApiProperty()
+  @ApiProperty({
+    example: 'г. Москва, ул. А, д. 1, кв. 1',
+    description: 'г., ул., д., кв.',
+  })
   @Column()
   address: string;
 
+  @ApiProperty({
+    example: [1, 2],
+    description: 'Список id заказов клиента',
+    required: false,
+  })
   @OneToMany(() => Order, (order) => order.client, {
     cascade: true,
   })

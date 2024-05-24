@@ -15,7 +15,7 @@ export class ClientsService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>, // "внедряем" репозиторий Product в сервис
     @InjectRepository(Client)
-    private readonly clientRepository: Repository<Client>, // "внедряем" репозиторий Artilcle в сервис
+    private readonly clientRepository: Repository<Client>, // "внедряем" репозиторий Client в сервис
   ) {}
 
   async create(clientDto: CreateClientDto): Promise<Client> {

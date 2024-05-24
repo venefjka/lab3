@@ -15,10 +15,11 @@ export class Order {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
-  @ApiProperty()
+  @ApiProperty({ example: 'Создан', description: 'Статус заказа' })
   @Column()
   status: string;
 
+  @ApiProperty({ example: [1, 2], description: 'Список id продуктов в заказе' })
   @ManyToMany(() => Product, (product) => product.orders) //Создадим связь многие ко многим с сущностью Product и свяжем с полем orders в продуктах
   @JoinTable({
     name: 'product_order',
@@ -27,6 +28,7 @@ export class Order {
   })
   products: Product[]; //объект, в котором будем автоматически получать все продукты в заказе
 
+  @ApiProperty({ example: 1, description: 'Id клиента, сделавшего заказ' })
   @ManyToOne(() => Client, (client) => client.orders, {
     onDelete: 'CASCADE',
   })
